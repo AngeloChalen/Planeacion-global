@@ -1,63 +1,52 @@
-# Planificador de Trayectorias A* para F1TENTH
+# Planificador Global de Trayectorias: LPA* y RRT (F1TENTH - Oschersleben)
 
-Este repositorio permite cargar mapas tipo `YAML + PNG`, realizar la binarización, aplicar reducción de resolución (*downsampling*), convertir a formato de cuadrícula, ejecutar varios algoritmos de planificación y exportar el camino generado en un archivo `.csv`.
+**Estudiante:** Angelo Chalen
+**Mapa Asignado:** Oschersleben
+**Algoritmos:** LPA* (Parte A) y RRT (Parte B)
 
 ---
 
-## Requisitos
+## 📘 Descripción del Proyecto
+
+Este repositorio contiene la implementación de dos algoritmos de planificación de trayectorias globales sobre un mapa de ocupación (GridMap).
+
+### 1. Algoritmo LPA* (Lifelong Planning A*)
+Es un algoritmo de búsqueda incremental que combina la eficiencia de A* con la capacidad de reutilizar cálculos previos. Aunque en esta práctica se usa en un mapa estático, LPA* calcula la ruta óptima minimizando el costo `g(n) + h(n)` desde el inicio hasta la meta, garantizando la trayectoria más corta posible evitando obstáculos.
+
+### 2. Algoritmo RRT (Rapidly-exploring Random Tree)
+Es un algoritmo basado en muestreo probabilístico. En lugar de buscar en una grilla sistemática, RRT construye un árbol explorando el espacio libre mediante puntos aleatorios. Esto genera trayectorias factibles rápidamente, aunque no necesariamente óptimas, caracterizadas por su forma irregular o en zig-zag.
+
+---
+
+## ⚙️ Requisitos
 
 - Python 3.8 o superior
 - pip
-- `python3-venv` (para crear entornos virtuales)
+- `python3-venv` (para entornos virtuales)
 - Sistema operativo Linux (probado en Ubuntu 22.04)
+- Archivos del mapa: `Oschersleben_map.png` y `.yaml` (incluidos en la carpeta `f1tenth`)
 
 ---
 
-## Instalación en entorno virtual (Linux)
+## 🚀 Instalación y Ejecución
 
-### 1. Instalar librería para crear entornos virtuales (si no está instalada)
+Siga estos pasos exactos para replicar los resultados:
+
+### 1. Preparar el entorno
 
 ```bash
+# Instalar venv si no lo tiene
 sudo apt update
 sudo apt install python3-venv
-```
 
-### 2. Clonar el repositorio
-
-```bash
-git clone https://github.com/widegonz/Global_Planner.git
+# Clonar el repositorio
+git clone [https://github.com/AngeloChalen/Planeacion-global.git](https://github.com/AngeloChalen/Planeacion-global.git)
 cd Global_Planner
-```
 
-### 3. Crear el entorno virtual y activarlo
-
-```bash
+# Crear y activar entorno virtual
 python3 -m venv venv
 source venv/bin/activate
-```
 
-### 4. Instalar dependencias
-
-```bash
+# Instalar dependencias
 pip install --upgrade pip
 pip install -r requirements.txt
-```
-
-### 5. Ejecutar el planificador
-
-```bash
-cd f1tenth
-python3 f1tenth_map.py
-```
-
-Es importante que dentro de la carpeta se encuentre el archivo `.png` y `.yaml` para poder realizar correctamente el calculo del camino.
-
-## Resultados
-Se genera un archivo astar_path_real.csv con el camino óptimo en coordenadas del mundo real:
-
-```bash
-x,y
--1.73,2.12
--1.67,2.06
-...
-```
