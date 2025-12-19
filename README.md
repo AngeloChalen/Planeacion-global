@@ -4,49 +4,65 @@
 **Mapa Asignado:** Oschersleben
 **Algoritmos:** LPA* (Parte A) y RRT (Parte B)
 
----
 
-## 📘 Descripción del Proyecto
-
-Este repositorio contiene la implementación de dos algoritmos de planificación de trayectorias globales sobre un mapa de ocupación (GridMap).
-
-### 1. Algoritmo LPA* (Lifelong Planning A*)
-Es un algoritmo de búsqueda incremental que combina la eficiencia de A* con la capacidad de reutilizar cálculos previos. Aunque en esta práctica se usa en un mapa estático, LPA* calcula la ruta óptima minimizando el costo `g(n) + h(n)` desde el inicio hasta la meta, garantizando la trayectoria más corta posible evitando obstáculos.
-
-### 2. Algoritmo RRT (Rapidly-exploring Random Tree)
-Es un algoritmo basado en muestreo probabilístico. En lugar de buscar en una grilla sistemática, RRT construye un árbol explorando el espacio libre mediante puntos aleatorios. Esto genera trayectorias factibles rápidamente, aunque no necesariamente óptimas, caracterizadas por su forma irregular o en zig-zag.
 
 ---
 
-## ⚙️ Requisitos
+## Requisitos
 
 - Python 3.8 o superior
 - pip
-- `python3-venv` (para entornos virtuales)
+- `python3-venv` (para crear entornos virtuales)
 - Sistema operativo Linux (probado en Ubuntu 22.04)
-- Archivos del mapa: `Oschersleben_map.png` y `.yaml` (incluidos en la carpeta `f1tenth`)
 
 ---
 
-## 🚀 Instalación y Ejecución
+## Instalación en entorno virtual (Linux)
 
-Siga estos pasos exactos para replicar los resultados:
-
-### 1. Preparar el entorno
+### 1. Instalar librería para crear entornos virtuales (si no está instalada)
 
 ```bash
-# Instalar venv si no lo tiene
 sudo apt update
 sudo apt install python3-venv
+```
 
-# Clonar el repositorio
-git clone [https://github.com/AngeloChalen/Planeacion-global.git](https://github.com/AngeloChalen/Planeacion-global.git)
+### 2. Clonar el repositorio
+
+```bash
+git clone https://github.com/AngeloChalen/Planeacion-global.git
 cd Global_Planner
+```
 
-# Crear y activar entorno virtual
+### 3. Crear el entorno virtual y activarlo
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-# Instalar dependencias
+### 4. Instalar dependencias
+
+```bash
 pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+### 5. Acceder a carpetaa f1tenth
+```bash
+cd f1tenth
+
+```
+### 6. Ejecutar el planificador
+-LPA*
+
+```bash
+cd f1tenth
+python3 f1tenth_map.py
+```
+- RRT
+```bash
+cd f1tenth
+python3 rrtf1tenth_map.py
+```
+Es importante que dentro de la carpeta se encuentre el archivo `.png` y `.yaml` para poder realizar correctamente el calculo del camino.
+
